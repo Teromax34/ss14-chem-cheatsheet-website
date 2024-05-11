@@ -1,0 +1,79 @@
+    body {    
+      font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lato', 'Liberation Sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+      background-image:url(/ss14_stuffs/white_tile.png);
+      color: lightgray;
+    }
+    .toc{
+      background:#303037;
+      border: 1px solid #37373e;
+      margin-left:10rem;
+      margin-right:10rem;
+      padding-left:2em;
+      padding-right:2em;
+      padding-bottom:3em;
+    }
+    
+    
+    .collapsible {
+      width: 100%;
+      max-width: 382px;
+      cursor: pointer;
+      padding: 4px;
+      border: none;
+      text-align: center;
+      outline: none;
+      font-size: 15.2px;
+      
+    }
+    .content {
+      display: none;
+      overflow: hidden;
+      max-width: 380px;
+      
+    }
+    .nested-content {
+    }
+    .expanded {
+      display: block;
+    }
+    .f_col {
+      font-weight:700;
+      border: 1px solid #303038;
+      position: relative;
+      padding-left:9em;
+      padding-right:9em;
+    }
+    .f_con {
+      background-color: #27272e;
+      border: 1px solid #303038;
+      border-top: none;
+      color: lightgrey;
+    }
+    .d_col {
+      background-color: rgba(0,0,0,0);
+      text-align: left;
+      font-weight:800;
+      border-bottom: 1px solid #303038;
+      color: lightgrey;
+    }
+    .d_con {
+      border-bottom: 1px solid #303038;
+      border-top: none;
+      padding: 0 0.5em;
+      color: lightgrey;
+    }
+    .no-border-bottom {
+      border-bottom: none;
+    }
+    .odtext {
+      position: absolute; 
+      right: 0; 
+      padding-right: 2px;
+      font-size: 80%;
+    }
+    .imgsmall{
+      width: 64px;
+      height: 64px;
+      image-rendering: pixelated;
+    }
+    
