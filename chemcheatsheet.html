@@ -1,57 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nested Collapsible Elements</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-    .collapsible {
-        background-color: #f1f1f1;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-    }
-    .content {
-        display: none;
-        overflow: hidden;
-    }
-    .nested-content {
-        padding: 10px;
-        background-color: #ddd;
-        margin-top: 10px;
-    }
-    .expanded {
-        display: block;
-    }
+
+body {    
+  font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lato', 'Liberation Sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+.collapsible-small {
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15.2px;
+}
+
+.collapsible {
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15.2px;
+}
+
+.active, .collapsible:hover {
+
+}
+
+.collapsible:after {
+  content: '\2228';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2227";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+
 </style>
 </head>
 <body>
 
-<h2>Outer Collapsible</h2>
-<button class="collapsible">Click to expand outer collapsible</button>
+<h2>Animated Collapsibles</h2>
+
+<p>A Collapsible:</p>
+<button class="collapsible" style="background-color:#4DA0BD;">Open Collapsible</button>
 <div class="content">
-    <div class="nested-content">
-        <h3>Inner Collapsible</h3>
-        <button class="collapsible">Click to expand inner collapsible</button>
-        <div class="content nested-content">
-            <p>This is the content of the inner collapsible. It will expand when you click on the button above.</p>
-            <p>And it will make the outer collapsible's content area expand accordingly.</p>
-        </div>
-    </div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <button class="collapsible" style="background-color:#4DA0BD;">Open Collapsible</button>
+  <div class="content">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
 </div>
 
+
 <script>
-    var collapsibles = document.querySelectorAll('.collapsible');
-    collapsibles.forEach(function(collapsible) {
-        collapsible.addEventListener('click', function() {
-            var content = this.nextElementSibling;
-            content.classList.toggle('expanded');
-        });
-    });
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+
+var coll = document.getElementsByClassName("collapsible-small");
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
 </script>
 
 </body>
