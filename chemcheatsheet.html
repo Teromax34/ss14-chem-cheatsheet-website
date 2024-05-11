@@ -1,109 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nested Collapsible Elements</title>
 <style>
-
-body {    
-  font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lato', 'Liberation Sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
-}
-
-.collapsible-small {
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15.2px;
-}
-
-.collapsible {
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15.2px;
-}
-
-.active, .collapsible:hover {
-
-}
-
-.collapsible:after {
-  content: '\2228';
-  color: white;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
-}
-
-.active:after {
-  content: "\2227";
-}
-
-.content {
-  padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: #f1f1f1;
-}
-
-
+    body {    
+      font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lato', 'Liberation Sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+    }
+    .collapsible {
+      width: 100%;
+      cursor: pointer;
+      padding: 4px;
+      border: none;
+      text-align: center;
+      outline: none;
+      font-size: 15.2px;
+    }
+    .content {
+      display: none;
+      overflow: hidden;
+    }
+    .nested-content {
+    }
+    .expanded {
+      display: block;
+    }
+    .f_col {
+      font-weight:700;
+      border: 1px solid #303038;
+    }
+    .f_con {
+      background-color: #ddd;
+      border: 1px solid #303038;
+      border-top: none;
+    }
+    .d_col {
+      background-color: rgba(0,0,0,0);
+      text-align: left;
+      font-weight:800;
+      border-bottom: 1px solid #303038;
+    }
+    .d_con {
+      border-bottom: 1px solid #303038;
+      border-top: none;
+      padding: 0 0.5em;
+    }
+    .no-border-bottom {
+      border-bottom: none;
+    }
 </style>
 </head>
 <body>
 
-<h2>Animated Collapsibles</h2>
-
-<p>A Collapsible:</p>
-<button class="collapsible" style="background-color:#4DA0BD;">Open Collapsible</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <button class="collapsible" style="background-color:#4DA0BD;">Open Collapsible</button>
-  <div class="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-  </div>
+<h2>Outer Collapsible</h2>
+<button class="f_col collapsible">Click to expand outer collapsible</button>
+<div class="f_con content">
+    <div class="nested-content">
+        <button class="d_col collapsible">Click to expand inner collapsible</button>
+        <div class="d_con content nested-content">
+            <p>This is the content of the inner collapsible. It will expand when you click on the button above.</p>
+            <p>And it will make the outer collapsible's content area expand accordingly.</p>
+        </div>
+      <p>lol</p>
+    </div>
 </div>
 
-
 <script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
-
-var coll = document.getElementsByClassName("collapsible-small");
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
+    var collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(function(collapsible) {
+        collapsible.addEventListener('click', function() {
+            var content = this.nextElementSibling;
+            content.classList.toggle('expanded');
+            if (this.classList.contains('d_col')) {
+                this.classList.toggle('no-border-bottom');
+            }
+        });
+    });
 </script>
-
 </body>
 </html>
